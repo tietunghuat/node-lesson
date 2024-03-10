@@ -11,7 +11,10 @@
 - const server = http.createServer((req,res)=>{})
 - req.url , req.method, req.header 去做請求
 - res 去做回傳
-- 如果req.url === "/xxx" , res.write("<html><body><h1>welcome nodejs</h1></body></html>")
+- 如果req.url === "/xxx" 
+```
+ res.write("<html><body><h1>welcome nodejs</h1></body></html>")
+```
 - 得到form method="POST" 的值 ,先定義一個const body， req.on("data",(chunk)=>{ body.push(chunk)})
 - req.on('end',()=>{ const parsedBody=Buffer.concat(body).toString()}) 就能得到form POST傳給你的資料
 - res.end(); 用於終止並發送響應並發送其到客戶端 沒有的話就沒辦法發送相應 所以一定要加
