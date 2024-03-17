@@ -35,3 +35,7 @@ req.on('end',()=>{ const parsedBody=Buffer.concat(body).toString()})
 res.end();  用於終止並發送響應並發送其到客戶端 沒有的話就沒辦法發送相應 所以一定要加
 ```
 - 以上是對express.js的基本邏輯架構
+
+## Day 3
+- 了解到獨立routes.js的用法
+- 了解到module的應用
