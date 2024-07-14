@@ -1,11 +1,14 @@
 const http = require("http");
 const fs = require("fs");
-const routes = require("./routes");
+const { handler } = require("./routes");
 
 //創建一個server的方法
 const server = http.createServer(
-  routes.handler
+  handler
   //   process.exit(); // 終止server
 );
-
-server.listen(3000); // localhost:3000
+server.listen(3000, (err) => {
+  if (err) {
+    console.log(err, 122);
+  } else console.log("Server is running on port 3000");
+}); // localhost:3000
