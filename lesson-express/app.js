@@ -2,21 +2,31 @@ const http = require("http");
 
 const express = require("express");
 
+const bodyParser = require("body-parser");
+
 const app = express();
 
-const server = http.createServer(app);
+const port = 3000;
 
-app.use((req, res, next) => {
-  console.log("now in middleware");
-  next();
-});
+const path = require("path");
 
-app.use((req, res, next) => {
-  console.log("now in second middleware");
-});
+app.set("view engine", "ejs");
+// app.set("views", "views");
 
-server.listen(5003, (err) => {
-  if (err) {
-    console.log(err);
-  } else "server listen on port 5003";
+const errorPageController = require("./controllers/error");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use;
+
+const { adminRouter } = require("./routes/admin");
+
+const { shopRouter } = require("./routes/shop");
+
+app.use("/admin", adminRouter);
+app.use("/shop", shopRouter);
+
+app.use(errorPageController.getErrorPages);
+
+app.listen(port, () => {
+  console.log("server listen on port 3000");
 });
