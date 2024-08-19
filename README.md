@@ -45,3 +45,8 @@ res.end();  用於終止並發送響應並發送其到客戶端 沒有的話就�
 - 了解到 Visual Code debugger的重要性
 - 了解到 npm install --save 跟 --save-dev的差異
 - 進入express.js 
+
+## Day 5
+- 商品的新增、編輯、詳細頁面、刪除
+- 更多的使用 class static功能，callback用法
+- 購物車的商品加入，新增，價格計算，商品從購物車刪除。

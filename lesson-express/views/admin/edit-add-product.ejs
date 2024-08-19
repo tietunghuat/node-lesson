@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 50%;
+    }
+    form input {
+      padding: 15px 5px;
+    }
+    form button {
+      padding: 15px 0;
+    }
+  </style>
+  <body>
+    <div>
+      <h1><% if(editing){ %>Edit product<% } else{ %>Add Product <% } %></h1>
+      <form action="/admin/edit-product" method="POST">
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          id="title"
+          value="<% if(editing){ %> <%= product.title %><% } %>" />
+        <input
+          type="number"
+          name="price"
+          placeholder="Price"
+          id="price"
+          value="<% if(editing){ %> <%= product.price %><% } %>" />
+        <textarea name="description" placeholder="Description" id="description">
+        <% if(editing){ %> <%= product.description %> <% } %>
+        </textarea>
+        <% if(editing){ %>
+        <!-- 這裡是要做 傳輸product.id 的資料 做為 request.body.id，因為地下是submit -->
+        <input type="hidden" value="<%= product.id %>" name="productId" />
+        <% } %>
+
+        <button type="submit">
+          <% if(editing){ %> Confirm Edit <% } else { %> Add product <% } %>
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

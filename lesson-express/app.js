@@ -22,8 +22,13 @@ const { adminRouter } = require("./routes/admin");
 
 const { shopRouter } = require("./routes/shop");
 
+const { cartRouter } = require("./routes/cart");
+
 app.use("/admin", adminRouter);
+
 app.use("/shop", shopRouter);
+
+app.use("/cart", cartRouter);
 
 app.use(errorPageController.getErrorPages);
 

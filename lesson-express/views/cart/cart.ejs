@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      main {
+        width: 100%;
+        max-width: 100%;
+      }
+      .column-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0px;
+        border: solid black 2px;
+        padding: 10px 0px;
+      }
+      .column-box button {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Cart</h1>
+
+      <% for (let item of products) { %>
+      <div class="column-box">
+        <span>Item ID : <%= item.id %></span>
+        <span>Item Quantity:<%= item.qty %></span>
+        <button type="button">Delete</button>
+      </div>
+      <% } %>
+      <div>
+        <span>Total Price: $ <%= totalPrice.toLocaleString() %></span>
+      </div>
+    </main>
+  </body>
+</html>

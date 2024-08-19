@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+        height: 100vh;
+      }
+      .column-box {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        border: 1px solid black;
+        padding: 10px;
+      }
+      .column-content {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .column-button {
+        display: flex;
+        flex: 1 1 0%;
+        gap: 5px;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      button {
+        width: 100%;
+        padding: 3px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <% if(products.length>0){ %>
+    <main>
+      <% for (let prod of products) { %>
+      <div class="column-box">
+        <div class="column-content">
+          <span> <%= prod.title %> </span>
+          <span> <%= prod.price %> </span>
+          <span><%= prod.description %></span>
+        </div>
+        <div class="column-button">
+          <a href="/admin/product-detail/<%=prod.id %>">
+            <button type="button">Details</button></a
+          >
+          <a href="/admin/edit-product/<%= prod.id %>?edit=true">
+            <button type="button">Edit</button>
+          </a>
+          <form method="POST" action="/admin/delete-product">
+            <input type="hidden" value="<%= prod.id %>" name="productId" />
+            <button type="submit">Delete</button>
+          </form>
+          <form method="POST" action="/admin/add-to-cart/<%=prod.id %>">
+            <button type="submit">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+    </main>
+    <% } else { %>
+    <div>
+      <h1>No products found</h1>
+    </div>
+    <% }%>
+  </body>
+</html>
