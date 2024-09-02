@@ -40,6 +40,16 @@ exports.getCart = async (req, res, next) => {
         const sameItemId = prod.find((item) => item.id === cartObj.id);
         filterItemInCart.push(sameItemId);
       }
+      cart.products.forEach((item) => {
+        console.log(item.id, 44);
+        filterItemInCart.forEach((filterItem) => {
+          if (filterItem.id === item.id) {
+            filterItem.qty = item.qty;
+          }
+        });
+      });
+      console.log(filterItemInCart, 55);
+
       res.render("shop/cart", {
         pageTitle: "Cart Item",
         path: "/shop/cart",
@@ -70,4 +80,15 @@ exports.getCheckout = (req, res, next) => {
     path: "/checkout",
     pageTitle: "Checkout",
   });
+};
+
+//刪除購物車內的商品
+exports.deleteCartItem = (req, res, next) => {
+  const prodId = req.body.productId;
+  Product.fetchAll((item) => {
+    const product = item.find((prod) => prod.id === prodId);
+    Cart.deleteProduct(prodId, product.price);
+  });
+
+  res.redirect("/cart");
 };
